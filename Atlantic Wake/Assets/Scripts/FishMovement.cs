@@ -12,9 +12,9 @@ public class FishMovement : MonoBehaviour {
         endPosition = new Vector2 (-10, Random.Range(-4, 1));
         speed = Random.Range (0.01f, 0.1f);
     }
-    void OnMouseDown() {
-        Destroy(gameObject);
-    }
+    //void OnMouseDown() {
+    //    Destroy(gameObject);
+    //}
     void Update () {
         float step = speed * Time.deltaTime;
         transform.position = Vector2.Lerp(transform.position, endPosition, step);

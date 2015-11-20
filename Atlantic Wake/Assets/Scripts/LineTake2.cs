@@ -12,9 +12,6 @@ public class LineTake2 : MonoBehaviour {
 	void Update () {
         float height = h.transform.position.y;
         float yval = 4.32F - height;
-        print(yval);
         transform.localScale = new Vector3(1, yval, 1);
-        //transform.localScale.y = -.25*height +4.32;
-	
 	}
 }

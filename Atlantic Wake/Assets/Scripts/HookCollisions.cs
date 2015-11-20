@@ -2,39 +2,44 @@
 using System.Collections;
 
 public class HookCollisions : MonoBehaviour {
-    private GameObject[] boxes;
-    private BoxCollider2D[] colliders;
-    private int numBoxes = 20;
+
+    private float newHookY = 3.5F;
+    private float speed = 5;
+    private float hookStartY = 3.5F;
+    private float hookStartX = -2.23F;
 	// Use this for initialization
 	void Start () {
-        transform.position = new Vector3(-2.23F, 3.75F, 0);
-        boxes = new GameObject[numBoxes];
-        colliders = new BoxCollider2D[numBoxes];
-        for  (int i = 0; i < numBoxes; i++)
-        {
-            boxes[i] = new GameObject();
-            //set height, width
-            float ySpot = 1.9F - i*0.32F;
-            boxes[i].transform.position = new Vector3(transform.position.x, ySpot ,0);
-            //add script for hook to move
-            boxes[i].AddComponent<HookSpot>();
-            //add collision box
-            colliders[i] = boxes[i].AddComponent<BoxCollider2D>();
-            colliders[i].size = new Vector2(1F, 0.32F);
-        }
+        transform.position = new Vector3(hookStartX, hookStartY, 0);
 	}
 	
-   void OnCollisionEnter (Collision col)
+   void OnTriggerEnter2D (Collider2D col)
     {
-        if((col.gameObject.name == "RedFish2")||(col.gameObject.name == "RedFish2(Clone)"))
-        {
-            Destroy(col.gameObject);
+        //kill fish
+        FishCaught isFish = col.gameObject.GetComponent<FishCaught>();
+        if (isFish){
+            isFish.killFish();
+            //send hook back to top
+            newHookY = hookStartY;
+            //transform.position = new Vector3(transform.position.x, 3.75F, transform.position.z);
         }
-    }
+        //add to score
+        
 
+    }
+    //function to get new height on mousedown
+    void OnMouseDown(){
+
+    }
 	// Update is called once per frame
 	void Update () {
-
+        if (Input.GetMouseButtonDown(0)){
+            print(Input.mousePosition.y);
+            if ((Input.mousePosition.x > 190F) && (Input.mousePosition.x < 250F)){
+                newHookY = 0.0197F*Input.mousePosition.y -4.5F;
+            }
+        }
+        float step = speed*Time.deltaTime;
+        transform.position = Vector2.Lerp(transform.position, new Vector3(transform.position.x, newHookY, transform.position.z), step);
 	
 	}
 }
