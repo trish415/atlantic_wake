@@ -2,25 +2,21 @@
 using System.Collections;
 
 public class FishMovement : MonoBehaviour {
-    public float speed; //public shows up in inspector to edit
-    public Transform target;
-
-	// Use this for initialization
-	void Start () {
-
-	}
-    
+    public Camera cam;
+    private Vector2 endPosition;
+    private float speed;
+    void Start () {
+        if (cam == null) {
+            cam = Camera.main;
+        }
+        endPosition = new Vector2 (-10, Random.Range(-4, 1));
+        speed = Random.Range (0.01f, 0.1f);
+    }
     void OnMouseDown() {
         Destroy(gameObject);
     }
-	// Update is called once per frame
-	void Update () {
-        //if (Input.GetMouseButtonDown(0)){
-        //    gameObject.SetActive(false);
-        //}
+    void Update () {
         float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
-	}
+        transform.position = Vector2.Lerp(transform.position, endPosition, step);
+    }
 }
-
-
