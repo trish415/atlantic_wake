@@ -36,9 +36,10 @@ public class HookCollisions : MonoBehaviour {
 	void Update () {
         //if hook has been reeled in, place where user clicks
         if ((Input.GetMouseButtonDown(0)) && ((transform.position.y - hookStartY) > -0.1)){
-            print(Input.mousePosition.y);
-            if ((Input.mousePosition.x > 190F) && (Input.mousePosition.x < 250F)){
-                newHookY = 0.0197F*Input.mousePosition.y -4.5F;
+            float across = Input.mousePosition.x/Screen.width;
+            float up = Input.mousePosition.y/Screen.height;
+            if((across > 0.31) && (across < 0.37) && (up < 0.89)){
+                newHookY = 9.928F*up - 4.46F;
             }
         }
         
