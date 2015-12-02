@@ -34,8 +34,8 @@ public class HookCollisions : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-        //if hook has been reeled in, place where user clicks
-        if ((Input.GetMouseButtonDown(0)) && ((transform.position.y - hookStartY) > -0.1)){
+        //place where user clicks
+        if (Input.GetMouseButtonDown(0)){ 
             float across = Input.mousePosition.x/Screen.width;
             float up = Input.mousePosition.y/Screen.height;
             if((across > 0.31) && (across < 0.37) && (up < 0.89)){

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
     public GameObject fish;
+    public GameObject cloud;
     private BoxCollider2D c;
     public Camera cam;
     void Start () {
