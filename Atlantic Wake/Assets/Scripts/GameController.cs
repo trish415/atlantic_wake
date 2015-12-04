@@ -21,7 +21,8 @@ public class GameController : MonoBehaviour {
             cam = Camera.main;
         }
         StartCoroutine( Spawn());
-		timerText.text = "Time Left:\n" + Mathf.RoundToInt (timeLeft);
+        StartCoroutine( CloudSpawn());
+		//timerText.text = "Time Left:\n" + Mathf.RoundToInt (timeLeft);
     }
 
 	void FixedUpdate() {
@@ -29,7 +30,7 @@ public class GameController : MonoBehaviour {
 		if (timeLeft < 0) {
 			timeLeft = 0;
 		}
-		timerText.text = "Time Left:\n" + Mathf.RoundToInt (timeLeft);
+		//timerText.text = "Time Left:\n" + Mathf.RoundToInt (timeLeft);
 	}
     
     IEnumerator Spawn() {
@@ -57,6 +58,16 @@ public class GameController : MonoBehaviour {
 				Instantiate (YellowFish, spawnPosition, spawnRotation);
 			}
 			yield return new WaitForSeconds (Random.Range(1.0f, 2.0f));    
+        }
+    }
+
+    IEnumerator CloudSpawn() {
+        yield return new WaitForSeconds(4.0f);
+        while(timeLeft > 0) {
+            Vector3 cloudPosition = new Vector3 (10, Random.Range (4, 6), 0.0f);
+            Quaternion cloudRotation = Quaternion.identity;
+            Instantiate(cloud, cloudPosition, cloudRotation);
+            yield return new WaitForSeconds(4.0f);
         }
     }
 }
