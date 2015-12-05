@@ -4,7 +4,7 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
-    public GameObject fish;
+    //public GameObject fish;
     public GameObject cloud;
 	public GameObject RedFish;
 	public GameObject YellowFish;
@@ -12,6 +12,10 @@ public class GameController : MonoBehaviour {
 	public GameObject PurpleFish;
 	public GameObject GreenFish;  
 	public GameObject BlackFish;
+    public GameObject tire;
+    public GameObject bottle;
+    public GameObject goggles;
+    public GameObject boot;
 	private BoxCollider2D c;
     public Camera cam;
 	public float timeLeft;
@@ -38,7 +42,8 @@ public class GameController : MonoBehaviour {
         while (timeLeft > 0) {
             Vector3 spawnPosition = new Vector3 (8, Random.Range (-4, 1), 0.0f);
             Quaternion spawnRotation = Quaternion.identity;    
-			float chooseFish = Random.Range(0,10);
+			float chooseFish = Random.Range(0.0F,10.0F);
+            print(chooseFish);
 			if (chooseFish >= 0 && chooseFish < 2) {
             	Instantiate (RedFish, spawnPosition, spawnRotation);
 			}
@@ -67,7 +72,7 @@ public class GameController : MonoBehaviour {
             Vector3 cloudPosition = new Vector3 (10, Random.Range (4, 6), 0.0f);
             Quaternion cloudRotation = Quaternion.identity;
             Instantiate(cloud, cloudPosition, cloudRotation);
-            yield return new WaitForSeconds(4.0f);
+            yield return new WaitForSeconds(27.0f);
         }
     }
 }
