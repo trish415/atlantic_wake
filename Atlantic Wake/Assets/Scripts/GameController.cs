@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour {
         }
         StartCoroutine( Spawn());
         StartCoroutine( CloudSpawn());
-		//timerText.text = "Time Left:\n" + Mathf.RoundToInt (timeLeft);
+		timerText.text = "Time: " + Mathf.RoundToInt (timeLeft);
     }
 
 	void FixedUpdate() {
@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour {
 		if (timeLeft < 0) {
 			timeLeft = 0;
 		}
-		//timerText.text = "Time Left:\n" + Mathf.RoundToInt (timeLeft);
+		timerText.text = "Time: " + Mathf.RoundToInt (timeLeft);
 	}
     
     IEnumerator Spawn() {
