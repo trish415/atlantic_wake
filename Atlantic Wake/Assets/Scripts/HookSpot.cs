@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HookSpot : MonoBehaviour {
     private GameObject h;
-    private int speed = 10;
+    private int speed = 5;
     void Start(){
         h = GameObject.Find("hook");
 

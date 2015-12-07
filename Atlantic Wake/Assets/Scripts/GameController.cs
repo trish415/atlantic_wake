@@ -24,8 +24,9 @@ public class GameController : MonoBehaviour {
         if (cam == null) {
             cam = Camera.main;
         }
-        StartCoroutine( Spawn());
+        StartCoroutine( FishSpawn());
         StartCoroutine( CloudSpawn());
+        StartCoroutine( JunkSpawn());
 		timerText.text = "Time: " + Mathf.RoundToInt (timeLeft);
     }
 
@@ -37,13 +38,12 @@ public class GameController : MonoBehaviour {
 		timerText.text = "Time: " + Mathf.RoundToInt (timeLeft);
 	}
     
-    IEnumerator Spawn() {
+    IEnumerator FishSpawn() {
         yield return new WaitForSeconds (2.0f);
         while (timeLeft > 0) {
             Vector3 spawnPosition = new Vector3 (8, Random.Range (-4, 1), 0.0f);
             Quaternion spawnRotation = Quaternion.identity;    
 			float chooseFish = Random.Range(0.0F,10.0F);
-            print(chooseFish);
 			if (chooseFish >= 0 && chooseFish < 2) {
             	Instantiate (RedFish, spawnPosition, spawnRotation);
 			}
@@ -73,6 +73,29 @@ public class GameController : MonoBehaviour {
             Quaternion cloudRotation = Quaternion.identity;
             Instantiate(cloud, cloudPosition, cloudRotation);
             yield return new WaitForSeconds(27.0f);
+        }
+    }
+
+    IEnumerator JunkSpawn(){
+        yield return new WaitForSeconds(Random.Range(3.0f, 8.0f));
+        while(timeLeft > 0){
+            Vector3 spawnPosition = new Vector3 (8, Random.Range (-4, 1), 0.0f);
+            Quaternion spawnRotation = Quaternion.identity;    
+            float chooseJunk = Random.Range(0,4);
+            if (chooseJunk == 0){
+                Instantiate(tire, spawnPosition, spawnRotation);
+            }
+            if (chooseJunk == 1){
+                Instantiate(bottle, spawnPosition, spawnRotation);
+            }
+            if (chooseJunk == 2){
+                Instantiate(goggles, spawnPosition, spawnRotation);
+            }
+            if (chooseJunk == 3){
+                Instantiate(boot, spawnPosition, spawnRotation);
+            }
+            yield return new WaitForSeconds(Random.Range(3.0f, 8.0f));
+
         }
     }
 }

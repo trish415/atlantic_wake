@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21270060}
   - 50: {fileID: 5072040}
   - 58: {fileID: 5836830}
+  - 114: {fileID: 11474394}
   m_Layer: 0
   m_Name: tire
   m_TagString: Untagged
@@ -59,6 +60,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.75499988
+--- !u!114 &11474394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ee84796ccf8ae41a5146c3323b956b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21270060
 SpriteRenderer:
   m_ObjectHideFlags: 1
