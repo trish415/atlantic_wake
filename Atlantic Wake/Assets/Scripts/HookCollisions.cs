@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HookCollisions : MonoBehaviour {
 
+	public Text scoreText;
+	public int fishValue;
+	private int score;
     private float newHookY = 3.5F;
     private float speed = 5;
     private float hookStartY = 3.5F;
@@ -13,6 +17,8 @@ public class HookCollisions : MonoBehaviour {
 	void Start () {
         transform.position = new Vector3(hookStartX, hookStartY, 0);
         prevY = hookStartY;
+		score = 0;
+		scoreText.text = "Score: " + score;
 	}
 	
    void OnTriggerEnter2D (Collider2D col)
@@ -21,6 +27,8 @@ public class HookCollisions : MonoBehaviour {
         FishCaught isFish = col.gameObject.GetComponent<FishCaught>();
         if (isFish){
             isFish.killFish();
+			score += fishValue;
+			scoreText.text = "Score: " + score;
             //send hook back to top
             newHookY = hookStartY;
         }
