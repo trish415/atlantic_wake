@@ -21,6 +21,9 @@ public class GameController : MonoBehaviour {
 	public float timeTotal;
     public GameObject hook;
     public Text livesText;
+    private int numMinutes;
+    private float waitFish;
+    private float waitJunk;
 
     void Start () {
         if (cam == null) {
@@ -30,11 +33,13 @@ public class GameController : MonoBehaviour {
         StartCoroutine( CloudSpawn());
         StartCoroutine( JunkSpawn());
         livesText.text = "Lives: 3";
+        numMinutes = 0;
     }
 
 	void FixedUpdate() {
-        //keep track of time for potential bonus feature
+        //keep track of time for gradual increase in spawn rate
 		timeTotal += Time.deltaTime;
+        numMinutes = (int)timeTotal/15;
 	}
     
     IEnumerator FishSpawn() {
@@ -61,7 +66,15 @@ public class GameController : MonoBehaviour {
 			if (chooseFish >= 9.5 && chooseFish <= 10) {
 				Instantiate (YellowFish, spawnPosition, spawnRotation);
 			}
-			yield return new WaitForSeconds (Random.Range(0.5f, 1.5f));    
+            if (numMinutes < 10){
+                waitFish = Random.Range(0.6f - (float)numMinutes*0.05f, 1.6f-(float)numMinutes *0.05f);
+            }
+            else
+            {
+                waitFish = Random.Range(0.02f, 1.02f);
+            }
+
+			yield return new WaitForSeconds(waitFish);
         }
     }
 
@@ -93,7 +106,17 @@ public class GameController : MonoBehaviour {
             if (chooseJunk == 3){
                 Instantiate(boot, spawnPosition, spawnRotation);
             }
-            yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
+
+            if (numMinutes < 10){
+                waitJunk = Random.Range(0.1f, 3.0f-(float)numMinutes *0.25f);
+                print(waitJunk);
+            }
+            else
+            {
+                waitJunk = Random.Range(0.1f, 0.5f);
+                print("here");
+            }
+            yield return new WaitForSeconds(waitJunk);
 
         }
     }
