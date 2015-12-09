@@ -109,12 +109,10 @@ public class GameController : MonoBehaviour {
 
             if (numMinutes < 10){
                 waitJunk = Random.Range(0.1f, 3.0f-(float)numMinutes *0.25f);
-                print(waitJunk);
             }
             else
             {
                 waitJunk = Random.Range(0.1f, 0.5f);
-                print("here");
             }
             yield return new WaitForSeconds(waitJunk);
 
