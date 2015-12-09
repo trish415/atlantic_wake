@@ -18,8 +18,10 @@ public class GameController : MonoBehaviour {
     public GameObject boot;
 	private BoxCollider2D c;
     public Camera cam;
-	public float timeLeft;
-	public Text timerText;
+	public float timeTotal;
+    public GameObject hook;
+    public Text livesText;
+
     void Start () {
         if (cam == null) {
             cam = Camera.main;
@@ -27,20 +29,17 @@ public class GameController : MonoBehaviour {
         StartCoroutine( FishSpawn());
         StartCoroutine( CloudSpawn());
         StartCoroutine( JunkSpawn());
-		timerText.text = "Time: " + Mathf.RoundToInt (timeLeft);
+        livesText.text = "Lives: 3";
     }
 
 	void FixedUpdate() {
-		timeLeft -= Time.deltaTime;
-		if (timeLeft < 0) {
-			timeLeft = 0;
-		}
-		timerText.text = "Time: " + Mathf.RoundToInt (timeLeft);
+        //keep track of time for potential bonus feature
+		timeTotal += Time.deltaTime;
 	}
     
     IEnumerator FishSpawn() {
         yield return new WaitForSeconds (2.0f);
-        while (timeLeft > 0) {
+        while (hook.GetComponent<HookCollisions>().getLives() > 0) {
             Vector3 spawnPosition = new Vector3 (8, Random.Range (-4, 1), 0.0f);
             Quaternion spawnRotation = Quaternion.identity;    
 			float chooseFish = Random.Range(0.0F,10.0F);
@@ -62,13 +61,13 @@ public class GameController : MonoBehaviour {
 			if (chooseFish >= 9.5 && chooseFish <= 10) {
 				Instantiate (YellowFish, spawnPosition, spawnRotation);
 			}
-			yield return new WaitForSeconds (Random.Range(1.0f, 2.0f));    
+			yield return new WaitForSeconds (Random.Range(0.5f, 1.5f));    
         }
     }
 
     IEnumerator CloudSpawn() {
         yield return new WaitForSeconds(4.0f);
-        while(timeLeft > 0) {
+        while(hook.GetComponent<HookCollisions>().getLives() > 0) {
             Vector3 cloudPosition = new Vector3 (10, Random.Range (4, 6), 0.0f);
             Quaternion cloudRotation = Quaternion.identity;
             Instantiate(cloud, cloudPosition, cloudRotation);
@@ -78,7 +77,7 @@ public class GameController : MonoBehaviour {
 
     IEnumerator JunkSpawn(){
         yield return new WaitForSeconds(Random.Range(3.0f, 8.0f));
-        while(timeLeft > 0){
+        while(hook.GetComponent<HookCollisions>().getLives() >0){
             Vector3 spawnPosition = new Vector3 (8, Random.Range (-4, 1), 0.0f);
             Quaternion spawnRotation = Quaternion.identity;    
             float chooseJunk = Random.Range(0,4);
@@ -94,7 +93,7 @@ public class GameController : MonoBehaviour {
             if (chooseJunk == 3){
                 Instantiate(boot, spawnPosition, spawnRotation);
             }
-            yield return new WaitForSeconds(Random.Range(3.0f, 8.0f));
+            yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
 
         }
     }

@@ -5,6 +5,13 @@ using System.Collections;
 public class HookCollisions : MonoBehaviour {
 
 	public Text scoreText;
+    public Text livesText;
+    public Text endScore;
+    public GameObject endMenu;
+    public GameObject inGameLives;
+    public GameObject inGameScore;
+    private int lives;
+    private bool endOfGame;
 	public int fishValue;
 	private int score;
     private float newHookY = 3.5F;
@@ -17,8 +24,10 @@ public class HookCollisions : MonoBehaviour {
 	void Start () {
         transform.position = new Vector3(hookStartX, hookStartY, 0);
         prevY = hookStartY;
+        lives = 3;
 		score = 0;
 		scoreText.text = "Score: " + score;
+        endOfGame = false;
 	}
 	
    void OnTriggerEnter2D (Collider2D col)
@@ -38,20 +47,23 @@ public class HookCollisions : MonoBehaviour {
             isJunk.killJunk();
             score -= 5;
             scoreText.text = "Score: " + score;
+            lives -= 1;
+            livesText.text = "Lives: " + lives;
+            if (lives <= 0){
+                //go to end screen
+                endGame();
+            }
             //send hook back to top
             newHookY = hookStartY;
         }  
 
 
     }
-    //function to get new height on mousedown
-    void OnMouseDown(){
 
-    }
 	// Update is called once per frame
 	void Update () {
-        //place where user clicks
-        if (Input.GetMouseButtonDown(0)){ 
+        //place where user clicks if not end of game
+        if ((Input.GetMouseButtonDown(0)) && (endOfGame == false)){ 
             float across = Input.mousePosition.x/Screen.width;
             float up = Input.mousePosition.y/Screen.height;
             if((across > 0.24) && (across < 0.45) && (up < 0.89)){
@@ -84,5 +96,17 @@ public class HookCollisions : MonoBehaviour {
         if (speed >= 0.08f){
             score += 10;
         }
+    }
+
+    public int getLives(){
+        return lives;
+    }
+
+    void endGame(){
+        endMenu.SetActive(true);
+        endOfGame = true;
+        inGameScore.SetActive(false);
+        inGameLives.SetActive(false);
+        endScore.text = "YOUR SCORE: " + score;
     }
 }
