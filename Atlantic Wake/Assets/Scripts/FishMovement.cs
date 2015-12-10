@@ -14,4 +14,12 @@ public class FishMovement : MonoBehaviour {
     void Update () {
         transform.position += speed*Vector3.left;
     }
+   
+    public void killFish(){
+        Destroy(gameObject);
+    }
+
+    public float getSpeed(){
+        return speed;
+    }
 }

@@ -18,32 +18,36 @@ public class GameController : MonoBehaviour {
     public GameObject boot;
 	private BoxCollider2D c;
     public Camera cam;
-	public float timeLeft;
-	public Text timerText;
+	public float timeTotal;
+    public GameObject hook;
+    public Text livesText;
+    private int numMinutes;
+    private float waitFish;
+    private float waitJunk;
+
     void Start () {
         if (cam == null) {
             cam = Camera.main;
         }
-        StartCoroutine( Spawn());
+        StartCoroutine( FishSpawn());
         StartCoroutine( CloudSpawn());
-		timerText.text = "Time: " + Mathf.RoundToInt (timeLeft);
+        StartCoroutine( JunkSpawn());
+        livesText.text = "Lives: 3";
+        numMinutes = 0;
     }
 
 	void FixedUpdate() {
-		timeLeft -= Time.deltaTime;
-		if (timeLeft < 0) {
-			timeLeft = 0;
-		}
-		timerText.text = "Time: " + Mathf.RoundToInt (timeLeft);
+        //keep track of time for gradual increase in spawn rate
+		timeTotal += Time.deltaTime;
+        numMinutes = (int)timeTotal/15;
 	}
     
-    IEnumerator Spawn() {
+    IEnumerator FishSpawn() {
         yield return new WaitForSeconds (2.0f);
-        while (timeLeft > 0) {
+        while (hook.GetComponent<HookCollisions>().getLives() > 0) {
             Vector3 spawnPosition = new Vector3 (8, Random.Range (-4, 1), 0.0f);
             Quaternion spawnRotation = Quaternion.identity;    
 			float chooseFish = Random.Range(0.0F,10.0F);
-            print(chooseFish);
 			if (chooseFish >= 0 && chooseFish < 2) {
             	Instantiate (RedFish, spawnPosition, spawnRotation);
 			}
@@ -62,17 +66,56 @@ public class GameController : MonoBehaviour {
 			if (chooseFish >= 9.5 && chooseFish <= 10) {
 				Instantiate (YellowFish, spawnPosition, spawnRotation);
 			}
-			yield return new WaitForSeconds (Random.Range(1.0f, 2.0f));    
+            if (numMinutes < 10){
+                waitFish = Random.Range(0.6f - (float)numMinutes*0.05f, 1.6f-(float)numMinutes *0.05f);
+            }
+            else
+            {
+                waitFish = Random.Range(0.02f, 1.02f);
+            }
+
+			yield return new WaitForSeconds(waitFish);
         }
     }
 
     IEnumerator CloudSpawn() {
         yield return new WaitForSeconds(4.0f);
-        while(timeLeft > 0) {
+        while(hook.GetComponent<HookCollisions>().getLives() > 0) {
             Vector3 cloudPosition = new Vector3 (10, Random.Range (4, 6), 0.0f);
             Quaternion cloudRotation = Quaternion.identity;
             Instantiate(cloud, cloudPosition, cloudRotation);
             yield return new WaitForSeconds(27.0f);
+        }
+    }
+
+    IEnumerator JunkSpawn(){
+        yield return new WaitForSeconds(Random.Range(3.0f, 8.0f));
+        while(hook.GetComponent<HookCollisions>().getLives() >0){
+            Vector3 spawnPosition = new Vector3 (8, Random.Range (-4, 1), 0.0f);
+            Quaternion spawnRotation = Quaternion.identity;    
+            float chooseJunk = Random.Range(0,4);
+            if (chooseJunk == 0){
+                Instantiate(tire, spawnPosition, spawnRotation);
+            }
+            if (chooseJunk == 1){
+                Instantiate(bottle, spawnPosition, spawnRotation);
+            }
+            if (chooseJunk == 2){
+                Instantiate(goggles, spawnPosition, spawnRotation);
+            }
+            if (chooseJunk == 3){
+                Instantiate(boot, spawnPosition, spawnRotation);
+            }
+
+            if (numMinutes < 10){
+                waitJunk = Random.Range(0.1f, 3.0f-(float)numMinutes *0.25f);
+            }
+            else
+            {
+                waitJunk = Random.Range(0.1f, 0.5f);
+            }
+            yield return new WaitForSeconds(waitJunk);
+
         }
     }
 }

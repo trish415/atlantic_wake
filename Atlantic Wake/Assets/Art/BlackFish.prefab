@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 475344}
   - 212: {fileID: 21209766}
   - 114: {fileID: 11432478}
-  - 114: {fileID: 11455678}
   - 50: {fileID: 5018984}
   - 58: {fileID: 5882556}
   - 198: {fileID: 19836098}
@@ -75,17 +74,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
---- !u!114 &11455678
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0de372f151ab864abc80c775e62a93b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &19836098
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21298716}
   - 50: {fileID: 5051150}
   - 68: {fileID: 6832366}
+  - 114: {fileID: 11411990}
   m_Layer: 0
   m_Name: message-in-a-bottle
   m_TagString: Untagged
@@ -68,6 +69,17 @@ EdgeCollider2D:
   - {x: -.498326927, y: .340512484}
   - {x: .182633176, y: .682614207}
   - {x: .599152923, y: 1.69509864}
+--- !u!114 &11411990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 105416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ee84796ccf8ae41a5146c3323b956b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21298716
 SpriteRenderer:
   m_ObjectHideFlags: 1

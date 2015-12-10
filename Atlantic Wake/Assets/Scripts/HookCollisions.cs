@@ -5,52 +5,75 @@ using System.Collections;
 public class HookCollisions : MonoBehaviour {
 
 	public AudioClip fishSound;
+	public AudioClip junkSound;
 	public Text scoreText;
+    public Text livesText;
+    public Text endScore;
+    public GameObject endMenu;
+    public GameObject inGameLives;
+    public GameObject inGameScore;
+    private int lives;
+    private bool endOfGame;
 	public int fishValue;
 	private int score;
     private float newHookY = 3.5F;
     private float speed = 5;
     private float hookStartY = 3.5F;
     private float hookStartX = -2.23F;
-    //private BoxCollider2D boxCol = gameObject.GetComponent<BoxCollider2D>();
     private float prevY;
 	AudioSource audio;
+	AudioSource audio2;
 	// Use this for initialization
 	void Start () {
         transform.position = new Vector3(hookStartX, hookStartY, 0);
         prevY = hookStartY;
-		score = 0; 
-		scoreText.text = "Score: " + score;
 		audio = GetComponent<AudioSource> ();
+		audio2 = GetComponent<AudioSource> ();
+        lives = 3;
+		score = 0;
+		scoreText.text = "Score: " + score;
+        endOfGame = false;
 	}
 	
    void OnTriggerEnter2D (Collider2D col)
     {
         //kill fish
-        FishCaught isFish = col.gameObject.GetComponent<FishCaught>();
+        FishMovement isFish = col.gameObject.GetComponent<FishMovement>();
+        JunkMovement isJunk = col.gameObject.GetComponent<JunkMovement>();
         if (isFish){
 			audio.PlayOneShot(fishSound, 0.7f);
             isFish.killFish();
-			score += fishValue;
+            addToScore(isFish.getSpeed());
 			scoreText.text = "Score: " + score;
+             //send hook back to top
+            newHookY = hookStartY;
+        }     
+
+        if(isJunk){
+            audio2.PlayOneShot(junkSound, 1f);
+            isJunk.killJunk();
+            score -= 5;
+            scoreText.text = "Score: " + score;
+            lives -= 1;
+            livesText.text = "Lives: " + lives;
+            if (lives <= 0){
+                //go to end screen
+                endGame();
+            }
             //send hook back to top
             newHookY = hookStartY;
-        }
-        //add to score
-        
+        }  
+
 
     }
-    //function to get new height on mousedown
-    void OnMouseDown(){
 
-    }
 	// Update is called once per frame
 	void Update () {
-        //place where user clicks
-        if (Input.GetMouseButtonDown(0)){ 
+        //place where user clicks if not end of game
+        if ((Input.GetMouseButtonDown(0)) && (endOfGame == false)){ 
             float across = Input.mousePosition.x/Screen.width;
             float up = Input.mousePosition.y/Screen.height;
-            if((across > 0.31) && (across < 0.37) && (up < 0.89)){
+            if((across > 0.24) && (across < 0.45) && (up < 0.89)){
                 newHookY = 9.928F*up - 4.46F;
             }
         }
@@ -69,4 +92,28 @@ public class HookCollisions : MonoBehaviour {
         transform.position = Vector2.Lerp(transform.position, new Vector3(transform.position.x, newHookY, transform.position.z), step);
 
 	}
+
+    void addToScore(float speed){
+        if ((speed >= 0.01f) && (speed < 0.04f)){
+            score += 3;
+        }
+        if ((speed >=0.04f) && (speed < 0.08f)){
+            score += 5;
+        }
+        if (speed >= 0.08f){
+            score += 10;
+        }
+    }
+
+    public int getLives(){
+        return lives;
+    }
+
+    void endGame(){
+        endMenu.SetActive(true);
+        endOfGame = true;
+        inGameScore.SetActive(false);
+        inGameLives.SetActive(false);
+        endScore.text = "YOUR SCORE: " + score;
+    }
 }
