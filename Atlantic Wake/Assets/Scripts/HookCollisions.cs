@@ -4,6 +4,7 @@ using System.Collections;
 
 public class HookCollisions : MonoBehaviour {
 
+	public AudioClip fishSound;
 	public Text scoreText;
 	public int fishValue;
 	private int score;
@@ -13,12 +14,14 @@ public class HookCollisions : MonoBehaviour {
     private float hookStartX = -2.23F;
     //private BoxCollider2D boxCol = gameObject.GetComponent<BoxCollider2D>();
     private float prevY;
+	AudioSource audio;
 	// Use this for initialization
 	void Start () {
         transform.position = new Vector3(hookStartX, hookStartY, 0);
         prevY = hookStartY;
-		score = 0;
+		score = 0; 
 		scoreText.text = "Score: " + score;
+		audio = GetComponent<AudioSource> ();
 	}
 	
    void OnTriggerEnter2D (Collider2D col)
@@ -26,6 +29,7 @@ public class HookCollisions : MonoBehaviour {
         //kill fish
         FishCaught isFish = col.gameObject.GetComponent<FishCaught>();
         if (isFish){
+			audio.PlayOneShot(fishSound, 0.7f);
             isFish.killFish();
 			score += fishValue;
 			scoreText.text = "Score: " + score;
