@@ -50,7 +50,7 @@ public class HookCollisions : MonoBehaviour {
         }     
 
         if(isJunk){
-            audio2.PlayOneShot(junkSound, 1f);
+            audio2.PlayOneShot(junkSound, 2f);
             isJunk.killJunk();
             score -= 5;
             scoreText.text = "Score: " + score;
