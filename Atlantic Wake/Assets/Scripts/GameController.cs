@@ -81,7 +81,7 @@ public class GameController : MonoBehaviour {
     IEnumerator CloudSpawn() {
         yield return new WaitForSeconds(4.0f);
         while(hook.GetComponent<HookCollisions>().getLives() > 0) {
-            Vector3 cloudPosition = new Vector3 (10, Random.Range (4, 6), 0.0f);
+            Vector3 cloudPosition = new Vector3 (12, Random.Range (4, 6), 0.0f);
             Quaternion cloudRotation = Quaternion.identity;
             Instantiate(cloud, cloudPosition, cloudRotation);
             yield return new WaitForSeconds(27.0f);

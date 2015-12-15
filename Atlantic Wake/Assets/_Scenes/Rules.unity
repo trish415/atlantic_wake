@@ -221,7 +221,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -29, y: 115}
+  m_AnchoredPosition: {x: -105, y: 108}
   m_SizeDelta: {x: 497, y: 196}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &706705291
@@ -805,7 +805,7 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 238.25, y: -195.839996}
+  m_AnchoredPosition: {x: 298.75, y: -166.339996}
   m_SizeDelta: {x: 202.5, y: 117.32}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1447343242
@@ -991,7 +991,7 @@ RectTransform:
   m_RootOrder: 12
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -44.5, y: 9.49999619}
+  m_AnchoredPosition: {x: -122, y: 5.49999619}
   m_SizeDelta: {x: 463, y: 43}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1498537697
@@ -1357,8 +1357,8 @@ RectTransform:
   m_RootOrder: 13
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -13.25, y: -173}
-  m_SizeDelta: {x: 570.5, y: 71}
+  m_AnchoredPosition: {x: -68.5, y: -188}
+  m_SizeDelta: {x: 570, y: 74}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1973143171
 MonoBehaviour:
@@ -1386,12 +1386,14 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CATCH 3 PIECES OF JUNK AND IT'S GAME OVER!
+  m_Text: 'CATCH 3 PIECES OF JUNK AND IT''S
+
+    GAME OVER!'
 --- !u!222 &1973143172
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1430,8 +1432,8 @@ RectTransform:
   m_RootOrder: 14
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: -1.52587891e-05}
-  m_SizeDelta: {x: 679, y: 509}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 800, y: 450}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2027071657
 MonoBehaviour:
