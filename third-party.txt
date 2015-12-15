@@ -7,11 +7,14 @@ http://opengameart.org/content/peaceful-sea
 
 Image Sources
 =============
+Water: Credit to Marta Nowaczyk, http://opengameart.org/content/dirt-tile; License: CC-BY 3.0
+
+Fish: http://opengameart.org/content/purple-fish-0, License: CC-0 (Public Domain)
+
+The rest of the sprites were found on various free clip art websites which did not list a license:
 Cloud: http://www.clipartbest.com/white-clouds
 Boat: http://cliparts.co/clipart/2544028
 Fishing Rod: http://www.clipartbest.com/picture-of-a-fishing-pole
-Fish: http://opengameart.org/content/purple-fish-0
-Water: http://opengameart.org/content/dirt-tile
 Bottle: http://www.clker.com/clipart-message-in-a-bottle-2.html
 Boot: https://openclipart.org/detail/189138/jackboot
 Goggles: http://hdimagelib.com/swimming+goggles+png
