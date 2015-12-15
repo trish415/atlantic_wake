@@ -1,20 +1,20 @@
-
 Sound Acknowledgements
 ======================
-http://opengameart.org/content/penguin-sfx
-http://opengameart.org/content/skippy-fish-water-sound-collection
-http://opengameart.org/content/peaceful-sea
+Junk Sound: Wolfgang Wozniak, License: CC-BY 3.0; http://opengameart.org/content/penguin-sfx
+Fish Sound: License: CC-0 (Public Domain); http://opengameart.org/content/skippy-fish-water-sound-collection
+Music: Eliot Corley, License: CC-BY- SA; http://opengameart.org/content/peaceful-sea
 
 Image Sources
 =============
+Water: Marta Nowaczyk, License: CC-BY 3.0; http://opengameart.org/content/dirt-tile
+Fish: License: CC-0 (Public Domain); http://opengameart.org/content/purple-fish-0
+
+The rest of the sprites were found on various free clip art websites which did not list a license:
 Cloud: http://www.clipartbest.com/white-clouds
 Boat: http://cliparts.co/clipart/2544028
 Fishing Rod: http://www.clipartbest.com/picture-of-a-fishing-pole
-Fish: http://opengameart.org/content/purple-fish-0
-Water: http://opengameart.org/content/dirt-tile
 Bottle: http://www.clker.com/clipart-message-in-a-bottle-2.html
 Boot: https://openclipart.org/detail/189138/jackboot
 Goggles: http://hdimagelib.com/swimming+goggles+png
 Tire: http://www.clipartpanda.com/categories/tire-wheel-clipart
-
 
